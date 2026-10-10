@@ -1,4 +1,4 @@
-#Explorando PA e PG
+#Funções para o projeto 1
 
 def verifica_numero_natural(numero: int) -> bool:
     """
@@ -30,15 +30,18 @@ def verifica_diferente_zero(numero: int) -> bool:
     else:
         return 0
 
+def verifica_numero(numero: int) -> bool:
+    """
+    Esta função verifica se o número digitado pelo usuário é um número de inteiro.
 
+    Args:
+        numero (int) = Número inserido pelo usuário.
 
+    Returns:
+        bool
+    """
 
-
-def main():
-
-    print("-"*50)
-    print(" PA & PG LAB")
-    print("-"*50)
-    print(" 1 - Progressão Aritimética")
-    print(" 2 - Progressão Geométrica")
-
+    if str(numero).isdigit():
+        return True
+    else:
+        return False
