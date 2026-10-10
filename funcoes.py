@@ -62,7 +62,7 @@ def calculo_pa(a1: int, r: int, n: int) -> tuple[list[int], int]:
         n (int) = Quantidade de termos da PA, inserida pelo usuário.
     
     Returns:
-        pa (list) = Lista contendo a sequência da PA.
+        sequencia (list) = Lista contendo a sequência da PA.
         soma (int) = Soma dos termos da PA.
     
     """
@@ -89,7 +89,7 @@ def calculo_pg(a1: int, q: int, n: int) -> tuple[list[int], int]:
         n (int) = Quantidade de termos da PG, inserida pelo usuário.
     
     Returns:
-        pa (list) = Lista contendo a sequência da PG.
+        sequencia (list) = Lista contendo a sequência da PG.
         soma (int) = Soma dos termos da PG
     
     """
@@ -103,6 +103,61 @@ def calculo_pg(a1: int, q: int, n: int) -> tuple[list[int], int]:
         
 
     return sequencia, soma
+
+def calculo_meta_pa(a1: int, r: int, meta: int) -> tuple[int, int]:
+    """
+    Esta função verifica quantas voltas são necessárias para a soma da PA ultrapassar a meta.
+    Ela calcula isso obtendo a sequencia da PA e somando seus termos.
+    Enquanto a soma for menor ou igual a meta, ele realiza a soma.
+    Recebe valores inseridos pelo usuário.
+    Retorna uma tupla contendo a soma dos termos e a quantiadade de voltas.
+    Args:
+        a1 (int) = Primeiro termo da PA, inserido pelo usuário.
+        r (int) = Razão da PA, inserido pelo usuários.
+        meta (int) = Meta da soma
+    
+    Returns:
+        soma (int) = Soma dos termos da PA.
+        len(sequencia) (int) = Quantidade de voltas necessárias.
+        
+    """
+    soma = 0
+    sequencia = []
+    termo_atual = a1
+    while soma <= meta:
+        sequencia.append(termo_atual)
+        soma += termo_atual
+        termo_atual += r
+
+    return soma, len(sequencia)
+
+def calculo_meta_pg(a1: int, q: int, meta: int) -> tuple[int, int]:
+    """
+    Esta função verifica quantas voltas são necessárias para a soma da PG ultrapassar a meta.
+    Ela calcula isso obtendo a sequencia da PG e somando seus termos.
+    Enquanto a soma for menor ou igual a meta, ele realiza a soma.
+    Recebe valores inseridos pelo usuário.
+    Retorna uma tupla contendo a soma dos termos e a quantiadade de voltas.
+    Args:
+        a1 (int) = Primeiro termo da PA, inserido pelo usuário.
+        q (int) = Razão da PG, inserido pelo usuários.
+        meta (int) = Meta da soma
+    
+    Returns:
+        soma (int) = Soma dos termos da PA.
+        len(sequencia) (int) = Quantidade de voltas necessárias.
+        
+    """
+    soma = 0
+    sequencia = []
+    termo_atual = a1
+    while soma <= meta:
+        sequencia.append(termo_atual)
+        soma += termo_atual
+        termo_atual *= q
+
+    return soma, len(sequencia)
+    
 
 
 
