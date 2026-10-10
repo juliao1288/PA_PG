@@ -50,4 +50,4 @@ O projeto foi construído seguindo boas práticas de arquitetura modular (`main.
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
+   git clone [https://github.com/juliao1288/PA_PG](https://github.com/juliao1288/PA_PG)
