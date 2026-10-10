@@ -63,6 +63,7 @@ def calculo_pa(a1: int, r: int, n: int) -> tuple[list[int], int]:
     
     Returns:
         pa (list) = Lista contendo a sequência da PA.
+        soma (int) = Soma dos termos da PA.
     
     """
     soma = 0
@@ -72,6 +73,33 @@ def calculo_pa(a1: int, r: int, n: int) -> tuple[list[int], int]:
         sequencia.append(termo_atual)
         soma += termo_atual
         termo_atual += r
+        
+
+    return sequencia, soma
+
+def calculo_pg(a1: int, q: int, n: int) -> tuple[list[int], int]:
+    """
+    Esta função realiza o cálculo da Progressão Geométrica.
+    Recebe os valores inseridos pelo usuários com os dados da PG.
+    Retorna uma tupla contendo a lista da sequência da PG e a soma dos termos.
+    
+    Args:
+        a1 (int) = Primeiro termo da PG, inserido pelo usuário.
+        q (int) = Razão da PG, inserido pelo usuários.
+        n (int) = Quantidade de termos da PG, inserida pelo usuário.
+    
+    Returns:
+        pa (list) = Lista contendo a sequência da PG.
+        soma (int) = Soma dos termos da PG
+    
+    """
+    soma = 0
+    sequencia = []
+    termo_atual = a1
+    for valor in range(n):
+        sequencia.append(termo_atual)
+        soma += termo_atual
+        termo_atual *= q
         
 
     return sequencia, soma
