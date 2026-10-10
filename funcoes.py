@@ -162,7 +162,3 @@ def calculo_meta_pg(a1: int, q: int, meta: int) -> tuple[int, int]:
             termo_atual *= q
 
     return soma, len(sequencia)
-    
-
-
-
