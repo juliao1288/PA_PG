@@ -124,7 +124,7 @@ def main():
 
                 soma, necessario = funcoes.calculo_meta_pg(primeiro_termo, quociente, meta)
 
-                print("Resultado: ")
+                print(" Resultado: ")
                 print(f" São necessários {necessario} termo(s) para ultrapassar a meta.")
                 print(f" A soma dos termos é equivalente a {soma}.")
             

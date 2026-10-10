@@ -49,22 +49,19 @@ def verifica_numero(entrada: int) -> bool:
     except ValueError:
         return False
 
-
 def calculo_pa(a1: int, r: int, n: int) -> tuple[list[int], int]:
     """
-    Esta função realiza o cálculo da Progressão Aritimética.
-    Recebe os valores inseridos pelo usuários com os dados da PA.
-    Retorna uma tupla contendo a lista da sequência da PA e a soma dos termos.
-    
+    Esta função realiza o cálculo da Progressão Aritmética (PA).
+    Recebe os valores inseridos pelo usuário com os dados da PA.
+    Retorna uma tupla contendo a lista da sequência da PA e a soma dos seus termos.
+
     Args:
-        a1 (int) = Primeiro termo da PA, inserido pelo usuário.
-        r (int) = Razão da PA, inserido pelo usuários.
-        n (int) = Quantidade de termos da PA, inserida pelo usuário.
-    
+        a1 (int): Primeiro termo da PA, inserido pelo usuário.
+        r (int): Razão da PA, inserida pelo usuário.
+        n (int): Quantidade de termos da PA, inserida pelo usuário.
+
     Returns:
-        sequencia (list) = Lista contendo a sequência da PA.
-        soma (int) = Soma dos termos da PA.
-    
+        tuple[list[int], int]: Uma tupla contendo a lista da sequência da PA e a soma total dos termos.
     """
     soma = 0
     sequencia = []
@@ -79,19 +76,17 @@ def calculo_pa(a1: int, r: int, n: int) -> tuple[list[int], int]:
 
 def calculo_pg(a1: int, q: int, n: int) -> tuple[list[int], int]:
     """
-    Esta função realiza o cálculo da Progressão Geométrica.
-    Recebe os valores inseridos pelo usuários com os dados da PG.
-    Retorna uma tupla contendo a lista da sequência da PG e a soma dos termos.
-    
+    Esta função realiza o cálculo da Progressão Geométrica (PG).
+    Recebe os valores inseridos pelo usuário com os dados da PG.
+    Retorna uma tupla contendo a lista da sequência da PG e a soma dos seus termos.
+
     Args:
-        a1 (int) = Primeiro termo da PG, inserido pelo usuário.
-        q (int) = Razão da PG, inserido pelo usuários.
-        n (int) = Quantidade de termos da PG, inserida pelo usuário.
-    
+        a1 (int): Primeiro termo da PG, inserido pelo usuário.
+        q (int): Razão da PG, inserida pelo usuário.
+        n (int): Quantidade de termos da PG, inserida pelo usuário.
+
     Returns:
-        sequencia (list) = Lista contendo a sequência da PG.
-        soma (int) = Soma dos termos da PG
-    
+        tuple[list[int], int]: Uma tupla contendo a lista da sequência da PG e a soma total dos termos.
     """
     soma = 0
     sequencia = []
@@ -107,54 +102,64 @@ def calculo_pg(a1: int, q: int, n: int) -> tuple[list[int], int]:
 def calculo_meta_pa(a1: int, r: int, meta: int) -> tuple[int, int]:
     """
     Esta função verifica quantas voltas são necessárias para a soma da PA ultrapassar a meta.
-    Ela calcula isso obtendo a sequencia da PA e somando seus termos.
-    Enquanto a soma for menor ou igual a meta, ele realiza a soma.
-    Recebe valores inseridos pelo usuário.
-    Retorna uma tupla contendo a soma dos termos e a quantiadade de voltas.
+    Ela gera a sequência da PA e acumula seus termos, adaptando a condição de parada
+    conforme a direção do crescimento (progressões crescentes ou decrescentes/negativas).
+
     Args:
-        a1 (int) = Primeiro termo da PA, inserido pelo usuário.
-        r (int) = Razão da PA, inserido pelo usuários.
-        meta (int) = Meta da soma
-    
+        a1 (int): Primeiro termo da PA, inserido pelo usuário.
+        r (int): Razão da PA, inserida pelo usuário.
+        meta (int): Meta limite para a soma.
+
     Returns:
-        soma (int) = Soma dos termos da PA.
-        len(sequencia) (int) = Quantidade de voltas necessárias.
-        
+        tuple[int, int]: Uma tupla contendo a soma total dos termos e a quantidade de voltas (termos) necessárias.
     """
     soma = 0
     sequencia = []
     termo_atual = a1
-    while soma <= meta:
-        sequencia.append(termo_atual)
-        soma += termo_atual
-        termo_atual += r
+
+    # Se o primeiro termo for negativo e estiver caindo (r < 0)
+    if a1 < 0 and r < 0:
+        while soma >= meta:
+            sequencia.append(termo_atual)
+            soma += termo_atual
+            termo_atual += r
+    else:
+        while soma <= meta:
+            sequencia.append(termo_atual)
+            soma += termo_atual
+            termo_atual += r
 
     return soma, len(sequencia)
 
 def calculo_meta_pg(a1: int, q: int, meta: int) -> tuple[int, int]:
     """
     Esta função verifica quantas voltas são necessárias para a soma da PG ultrapassar a meta.
-    Ela calcula isso obtendo a sequencia da PG e somando seus termos.
-    Enquanto a soma for menor ou igual a meta, ele realiza a soma.
-    Recebe valores inseridos pelo usuário.
-    Retorna uma tupla contendo a soma dos termos e a quantiadade de voltas.
+    Ela gera a sequência da PG e acumula seus termos, adaptando a condição de parada
+    conforme a direção do crescimento (progressões crescentes ou decrescentes/negativas).
+
     Args:
-        a1 (int) = Primeiro termo da PA, inserido pelo usuário.
-        q (int) = Razão da PG, inserido pelo usuários.
-        meta (int) = Meta da soma
-    
+        a1 (int): Primeiro termo da PG, inserido pelo usuário.
+        q (int): Razão da PG, inserida pelo usuário.
+        meta (int): Meta limite para a soma.
+
     Returns:
-        soma (int) = Soma dos termos da PA.
-        len(sequencia) (int) = Quantidade de voltas necessárias.
-        
+        tuple[int, int]: Uma tupla contendo a soma total dos termos e a quantidade de voltas (termos) necessárias.
     """
     soma = 0
     sequencia = []
     termo_atual = a1
-    while soma <= meta:
-        sequencia.append(termo_atual)
-        soma += termo_atual
-        termo_atual *= q
+
+    # Se a PG for para valores negativos
+    if a1 < 0 and q > 0:
+        while soma >= meta:
+            sequencia.append(termo_atual)
+            soma += termo_atual
+            termo_atual *= q
+    else:
+        while soma <= meta:
+            sequencia.append(termo_atual)
+            soma += termo_atual
+            termo_atual *= q
 
     return soma, len(sequencia)
     
