@@ -1,8 +1,12 @@
 #Explorando PA e PG
 
 import funcoes
+from interface import iniciar_interface
+
 
 def main():
+    iniciar_interface()
+    return
     while True:
         print("-"*50)
         print(" PA & PG LAB")
@@ -97,12 +101,16 @@ def main():
                     entrada_meta = input(" Insira a meta da soma da PA: ")
                 meta = int(entrada_meta)
 
-                soma, necessario = funcoes.calculo_meta_pa(primeiro_termo, razao, meta)
-                
-                print("Resultado: ")
-                print(f" São necessários {necessario} termo(s) para ultrapassar a meta.")
-                print(f" A soma dos termos é equivalente a {soma}.")
-                
+                resultado = funcoes.calculo_meta_pa(primeiro_termo, razao, meta)
+
+                if resultado is None:
+                    print("Não é possível alcançar essa meta.")
+                else:
+                    soma, necessario = resultado
+                    print("Resultado: ")
+                    print(f" São necessários {necessario} termo(s) para ultrapassar a meta.")
+                    print(f" A soma dos termos é equivalente a {soma}.")
+                    
             elif tipo == "2":
                 entrada_a1 = input("\n\n Insira o primeiro termo da PG: ")
                 while not funcoes.verifica_numero(entrada_a1):
@@ -122,12 +130,16 @@ def main():
                     entrada_meta = input(" Insira a meta da soma da PG: ")
                 meta = int(entrada_meta)
 
-                soma, necessario = funcoes.calculo_meta_pg(primeiro_termo, quociente, meta)
+                resultado = funcoes.calculo_meta_pg(primeiro_termo, quociente, meta)
 
-                print(" Resultado: ")
-                print(f" São necessários {necessario} termo(s) para ultrapassar a meta.")
-                print(f" A soma dos termos é equivalente a {soma}.")
-            
+                if resultado is None:
+                    print("Não é possível alcançar essa meta.")
+
+                else:
+                    soma, necessario = resultado
+                    print(f"São necessários {necessario} termos.")
+                    print(f"Soma obtida: {soma}")
+
 
         elif escolha == "4":
             print(" Você escolheu sair...")
